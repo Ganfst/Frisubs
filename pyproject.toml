@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kresolve"
+version = "0.1.0"
+description = "Karaoke editable en DaVinci Resolve: transcribe con faster-whisper y crea clips Text+ por palabra."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "faster-whisper>=1.1",
+    # PyAV 19 quitó el argumento metadata_errors que usa faster-whisper 1.2.1
+    # al decodificar el audio (TypeError en av.open). Probado: 15.1, 16.1, 17.1 y 18.1 sí funcionan.
+    "av>=11,<19",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+# Librerías CUDA 12 para la GPU en Windows/Linux (cuBLAS + cuDNN 9).
+# Solo hacen falta si quieres transcribir con la GPU NVIDIA.
+cuda = [
+    "nvidia-cublas-cu12",
+    "nvidia-cudnn-cu12>=9,<10",
+]
+dev = [
+    "pytest>=8",
+]
+
+[project.scripts]
+kresolve = "kresolve.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kresolve"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

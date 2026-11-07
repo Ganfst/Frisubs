@@ -1,0 +1,52 @@
+# kresolve - configuración principal
+# Las rutas relativas se resuelven respecto a la carpeta de este archivo.
+
+transcriber:
+  engine: faster-whisper
+  model: large-v3          # large-v3 (GPU) | large-v3-turbo | medium | small (CPU más rápido)
+  device: auto             # auto | cuda | cpu   (si la GPU falla, se cae a CPU solo)
+  compute_type: auto       # auto | float16 | int8_float16 | int8
+  language: es             # null o auto = autodetectar
+  vad_filter: true         # quita silencios largos; ponlo a false si se come partes cantadas
+  beam_size: 5
+  condition_on_previous_text: false   # false evita bucles de texto repetido en canciones
+  initial_prompt: null     # p. ej. nombres propios o la letra para orientar a Whisper
+  download_root: null      # carpeta para los modelos (null = caché de Hugging Face)
+
+grouping:
+  strategy: per_line       # per_word | per_line | per_line_single | sliding
+  options:
+    max_chars: 42          # caracteres por línea en pantalla
+    max_words: 8
+    max_gap: 1.0           # silencio (s) que fuerza línea nueva
+    lead_in: 0.2           # la línea aparece 0.2 s antes de cantarla
+    hold: 0.3              # y se queda 0.3 s al acabar
+    window: 4              # sliding: palabras visibles a la vez
+    highlight: true        # per_line / sliding: capa de resaltado
+    fill_gaps: true        # per_word: mantener la palabra hasta la siguiente
+
+output:
+  work_dir: ./work         # aquí van audio, transcript.json (siempre), .srt, plan.json...
+  save_srt: true
+  save_ass: false          # true = también transcript.ass (subtítulos con resaltado)
+
+style: plantilla           # preset de styles/presets.yaml
+styles_file: ./styles/presets.yaml
+
+resolve:
+  install_dir: "Z:/Programs/Davinci"   # carpeta de Resolve.exe / fusionscript.dll (null = ruta por defecto)
+  template: kresolve_template          # nombre del Text+ en el Media Pool
+  tool_name: Template                  # nombre del nodo Text+ dentro de la plantilla
+  track_name: kresolve                 # pistas que crea: "kresolve" y "kresolve HL"
+  replace_existing: true               # al crear, vacía antes esas pistas
+  use_in_out: false                    # true = exportar solo el rango In/Out de la timeline
+  audio_name: kresolve_audio
+  name_clips: true                     # nombre del clip = su texto (se lee en la timeline)
+  highlight_clip_color: Orange         # color de los clips de resaltado en la timeline
+  writeon_pad: 0.5                     # margen (caracteres) del Write On del resaltado
+  writeon_count_spaces: true
+
+overlay:                               # kresolve overlay (ProRes 4444 con alfa)
+  width: 1920
+  height: 1080
+  fps: null                            # null = el de la timeline (si se exportó desde Resolve) o 24

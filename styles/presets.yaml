@@ -1,0 +1,42 @@
+# Presets de estilo. Elige uno con "style:" en config.yaml o --style en la CLI.
+#
+# En los Text+, una clave a null (o ausente) RESPETA la plantilla del Media Pool:
+# lo que diseñes en el Inspector (fuente, contorno, sombra...) es lo que sale.
+# Las claves con valor sobrescriben la plantilla en cada clip.
+#
+#   font, style      -> Text+ Font / Style            ("Open Sans", "Bold")
+#   size             -> Text+ Size (relativo al ancho, 0.08 = por defecto)
+#   color            -> color del texto base [r, g, b] de 0 a 1
+#   highlight_color  -> color de la palabra activa
+#   position         -> Layout > Center [x, y] de 0 a 1 (y = 0 abajo)
+#   uppercase        -> todo en mayúsculas
+#   ass_size, outline, shadow, outline_color -> solo para el overlay .ass
+
+# Respeta la plantilla; solo define el color del resaltado.
+plantilla:
+  highlight_color: [1.0, 0.85, 0.1]
+
+# El del diseño original: fuerza fuente, tamaño, colores y posición.
+karaoke_default:
+  font: "Open Sans"
+  style: "Bold"
+  size: 0.08
+  color: [1, 1, 1]
+  highlight_color: [1, 0.85, 0.1]
+  position: [0.5, 0.12]
+  ass_size: 72
+  outline: 3
+  shadow: 1
+
+# Estilo "reels": grande, en mayúsculas, centrado.
+reels:
+  font: "Montserrat"
+  style: "Black"
+  size: 0.1
+  color: [1, 1, 1]
+  highlight_color: [0.2, 1, 0.4]
+  position: [0.5, 0.35]
+  uppercase: true
+  ass_size: 96
+  outline: 5
+  shadow: 0

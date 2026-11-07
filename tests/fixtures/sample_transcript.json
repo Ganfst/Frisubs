@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "language": "es",
+  "meta": {
+    "engine": "faster-whisper",
+    "model": "fixture",
+    "source": {
+      "timeline": "Timeline 1",
+      "fps": "24",
+      "start_frame": 86400,
+      "offset_frames": 0
+    }
+  },
+  "segments": [
+    {
+      "_text": "Hola que tal, esto es una prueba de karaoke en Resolve.",
+      "words": [
+        {"text": "Hola", "start": 0.500, "end": 0.820, "prob": 0.990},
+        {"text": "que", "start": 0.820, "end": 1.000, "prob": 0.950},
+        {"text": "tal,", "start": 1.000, "end": 1.400, "prob": 0.970},
+        {"text": "esto", "start": 1.600, "end": 1.900, "prob": 0.980},
+        {"text": "es", "start": 1.900, "end": 2.050, "prob": 0.990},
+        {"text": "una", "start": 2.050, "end": 2.300, "prob": 0.990},
+        {"text": "prueba", "start": 2.300, "end": 2.800, "prob": 0.960},
+        {"text": "de", "start": 2.800, "end": 2.950, "prob": 0.990},
+        {"text": "karaoke", "start": 2.950, "end": 3.600, "prob": 0.900},
+        {"text": "en", "start": 3.600, "end": 3.750, "prob": 0.990},
+        {"text": "Resolve.", "start": 3.750, "end": 4.400, "prob": 0.850}
+      ]
+    },
+    {
+      "_text": "Segunda frase tras un silencio",
+      "words": [
+        {"text": "Segunda", "start": 6.000, "end": 6.500, "prob": 0.990},
+        {"text": "frase", "start": 6.500, "end": 6.900, "prob": 0.990},
+        {"text": "tras", "start": 6.900, "end": 7.100, "prob": 0.990},
+        {"text": "un", "start": 7.100, "end": 7.200, "prob": 0.990},
+        {"text": "silencio", "start": 7.200, "end": 7.900, "prob": 0.990}
+      ]
+    }
+  ]
+}
